@@ -611,7 +611,7 @@ sub complete_value {
     }
 
     # If result value is null-ish (null, undefined, or NaN) then return null.
-    unless ($result) {
+    unless (defined $result) {
         warn 'NULLISH';
         return NULLISH; # null
     }
