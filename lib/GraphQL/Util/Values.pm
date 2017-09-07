@@ -199,11 +199,11 @@ sub coerce_value {
     return if !defined($value); # Intentionally return no value
 
     if ($type->isa('GraphQL::Type::NonNull')) {
-        return unless $value; # Intentionally return no value
+        return unless defined $value; # Intentionally return no value
         return coerce_value($type->of_type, $value);
     }
 
-    return unless $value; # Intentionally return no value
+    return unless defined $value; # Intentionally return no value
 
     if ($type->isa('GraphQL::Type::List')) {
         my $item_type = $type->of_type;
