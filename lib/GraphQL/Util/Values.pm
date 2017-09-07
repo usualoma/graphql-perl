@@ -274,14 +274,7 @@ sub coerce_value {
         if !$type->isa('GraphQL::Type::Scalar')
         && !$type->isa('GraphQL::Type::Enum');
 
-    my $parsed = $type->parse_value($value);
-    unless ($parsed) {
-        # null or invalid values represent a failure to parse correctly,
-        # in which case no value is returned.
-        return;
-    }
-
-    return $parsed;
+    return $type->parse_value($value);
 }
 
 1;
