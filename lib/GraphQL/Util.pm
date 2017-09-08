@@ -101,7 +101,7 @@ sub is_valid_js_value {
 
     # A value must be provided if the type is non-null.
     if ($type->isa('GraphQL::Type::NonNull')) {
-        if (!$value || (ref($value) && $value == NULLISH)) {
+        if (!defined $value || (ref($value) && $value == NULLISH)) {
         # unless ($value) {
             return [qq`Expected "${ stringify_type($type) }", found null.`];
         }

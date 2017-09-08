@@ -199,11 +199,11 @@ sub coerce_value {
     return if !defined($value); # Intentionally return no value
 
     if ($type->isa('GraphQL::Type::NonNull')) {
-        return unless $value; # Intentionally return no value
+        return unless defined $value; # Intentionally return no value
         return coerce_value($type->of_type, $value);
     }
 
-    return unless $value; # Intentionally return no value
+    return unless defined $value; # Intentionally return no value
 
     if ($type->isa('GraphQL::Type::List')) {
         my $item_type = $type->of_type;
@@ -274,14 +274,7 @@ sub coerce_value {
         if !$type->isa('GraphQL::Type::Scalar')
         && !$type->isa('GraphQL::Type::Enum');
 
-    my $parsed = $type->parse_value($value);
-    unless ($parsed) {
-        # null or invalid values represent a failure to parse correctly,
-        # in which case no value is returned.
-        return;
-    }
-
-    return $parsed;
+    return $type->parse_value($value);
 }
 
 1;

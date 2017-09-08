@@ -44,6 +44,8 @@ subtest 'executes arbitrary code' => sub {
           return 'Pic of size: ' . ($size || 50);
       },
       deep => sub { $deep_data },
+      blank => '',
+      zero => 0,
     };
 
     $deep_data = {
@@ -72,6 +74,8 @@ subtest 'executes arbitrary code' => sub {
           }
         },
         deep => { type => $DeepDataType },
+        blank => { type => GraphQLString },
+        zero => { type => GraphQLInt },
       } }
     );
 
@@ -108,6 +112,8 @@ subtest 'executes arbitrary code' => sub {
             b
           }
         }
+        blank
+        zero
       }
 
       fragment c on DataType {
@@ -137,6 +143,8 @@ EOF
                     { a => 'Apple', b => 'Banana' },
                 ],
             },
+            blank => '',
+            zero  => 0,
         },
     };
 };
