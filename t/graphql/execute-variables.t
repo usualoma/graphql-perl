@@ -289,6 +289,19 @@ EOQ
             };
         };
 
+        subtest 'properly parses blank value' => sub {
+            my $params = { input => { a => '', b => [''], c => '' } };
+            my $result =  execute($schema, $ast, undef, undef, $params);
+
+            is_deeply $result, {
+                data => {
+                    fieldWithObjectInput => encode_json({
+                        a => '', b => [''], c => ''
+                    }),
+                },
+            };
+        };
+
         subtest 'executes with complex scalar input' => sub {
             my $params = { input => { c => 'foo', d => 'SerializedValue' } };
             my $result =  execute($schema, $ast, undef, undef, $params);
