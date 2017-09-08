@@ -18,7 +18,7 @@ my %module_build_args = (
     "Artur Khabibullin - rtkh\@cpan.org"
   ],
   "dist_name" => "GraphQL",
-  "dist_version" => "0.01",
+  "dist_version" => "0.010001",
   "license" => "perl",
   "module_name" => "GraphQL",
   "recursive_test_files" => 1,
